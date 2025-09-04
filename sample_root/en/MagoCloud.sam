@@ -1,0 +1,47 @@
+﻿[STYLE ../mago-styles/mago-custom.css]
+[STYLE ../mago-styles/mago-help-custom.css]
+[RESOURCES mago-styles/skin.css]
+[RESOURCES mago-styles/logo_top.png]
+[RESOURCES mago-styles/favicon.png]
+[VAR advanced_var_expansion true]
+[VAR MAGO MagoCloud]
+
+...............................................................................        
+                           MagoCloud
+         --------------------------------------------------------
+                            Help Center
+
+...............................................................................
+
+[H1 NOINDEX] Welcome to the %%MAGO%% Home Page !
+
+This is the complete help for %%MAGO%% !
+
+[INCLUDE source/Mago/EDI/EDI.sam]
+[INCLUDE source/Mago/Financial/Financial.sam]
+[INCLUDE source/Mago/Logistics/Logistics.sam]
+[INCLUDE source/Mago/Manufacturing/Manufacturing.sam]
+[INCLUDE source/Mago/Masters/Masters.sam]
+[INCLUDE source/Mago/Preferences/Preferences.sam]
+[INCLUDE source/Mago/Purchases/Purchases.sam]
+[INCLUDE source/Mago/Retail/Retail.sam]
+[INCLUDE source/Mago/Sales/Sales.sam]
+[INCLUDE source/Mago/Services/Services.sam]
+[INCLUDE source/Mago/.Net_Core_Server_Not_Responding,_up_to_the_3.6_version.sam]
+[INCLUDE source/Mago/.Net_Core_Server_Not_Responding_from_version_4.0_and_above.sam]
+[INCLUDE source/Mago/Cross_References_Document_Navigation.sam]
+[INCLUDE source/Mago/Installing_and_configuring_Mago4.sam]
+[INCLUDE source/Mago/Installing_and_configuring_Retail.sam]
+[INCLUDE source/Mago/Mago.net_reports_modified_for_Mago4.sam]
+[INCLUDE source/Mago/Mago4_Requirements.sam]
+[INCLUDE source/Mago/Modify_report_of_Mago.net.sam]
+[INCLUDE source/Mago/Server_Setup_Wizard.sam]
+[INCLUDE source/Mago/TroubleShooting_Requirements.sam]
+[INCLUDE source/TB_Framework/TB_Framework.sam]
+[INCLUDE source/TB_Studio/TB_Studio.sam]
+[INCLUDE source/__NO_FOLDER/__NO_FOLDER.sam]
+[H1 NOINDEX pages/404_not_found] PAGE NOT FOUND
+[IMG C:/HelpCenter/help_test/en/source/__MAIN_IMAGES/404_image.png]
+[LINK MagoCloud Click here to get back to homepage!]
+
+[STYLE custom_home]

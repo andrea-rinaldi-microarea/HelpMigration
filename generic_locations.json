@@ -1,0 +1,522 @@
+[
+  {
+    "match":  [
+                "refguide-m4-accounting-common-*", "refguide-m4-ap_ar-common-*", "refguide-m4-common-declintent$", 
+                "refguide-m4-common-defaultdeclintent$", "refguide-m4-costaccounting-common*"
+              ],
+    "destination": {
+      "root": "Mago",
+      "folder": "Financial",
+      "subfolder": "_Common"
+    }
+  },
+  {
+    "match": ["refguide-m4-accounting-documents-clearing$"],
+    "destination": {
+      "root": "Mago",
+      "folder": "Financial",
+      "subfolder": "PaymentSchedules"
+    }
+  },
+  {
+    "match": ["refguide-m4-accounting-report-accountingprintoutscheck*"],
+    "redirect": "ERP.Accounting.AccountingPrintoutsCheck"
+  },
+  {
+    "match": ["refguide-m4-accounting$"],
+    "redirect": "ERP.Accounting.BatchDocuments.GLJournalBlock"
+  },
+  {
+    "match": ["refguide-m4-accounting-report-custsupprevaluation$"],
+    "redirect": "ERP.Accounting.CustSuppRevaluation"
+  },
+  {
+    "match": ["refguide-m4-additionalcharges-documents-additionalchargesrebuilding$"],
+    "redirect": "ERP.AdditionalCharges.Documents.AdditionalCharges"
+  },
+  {
+    "match": ["refguide-m4-balancesheets$"],
+    "destination": {
+      "root": "Mago",
+      "folder": "Financial",
+      "subfolder": "BalanceSheets",
+      "h0": "Mago",
+      "h1": "Financial",
+      "h2": "Balance Sheets",
+      "h3": "Balance Sheets"
+    }
+  },
+  {
+    "match": ["refguide-m4-banking$"],
+    "destination": {
+      "root": "Mago",
+      "folder": "Financial",
+      "subfolder": "Banking",
+      "h0": "Mago",
+      "h1": "Financial",
+      "h2": "Banking"
+    }
+  },
+  {
+    "match": ["refguide-m4-barcode-batchdocuments-barcodeidentification$"],
+    "destination": {
+      "root": "Mago",
+      "folder": "Preferences",
+      "subfolder": "Logistics",
+      "h0": "Mago",
+      "h1": "Preferences",
+      "h2": "Logistics",
+      "h3": "Barcode Automatic Identification"
+    }
+  },
+  {
+    "match":  [
+                "refguide-m4-barcode-common*", "refguide-common-wmsmobile-*", "refguide-m4-documents-common-itemdatapanel", 
+                "refguide-m4-inventory-common-crossreferences$", "refguide-m4-items-common*", "refguide-m4-logistics-common*"
+              ],
+    "destination": {
+      "root": "Mago",
+      "folder": "Logistics",
+      "subfolder": "_Common"
+    }
+  },
+  {
+    "match": ["refguide-m4-inventory-inventoryentries$"],
+    "destination": {
+      "root": "Mago",
+      "folder": "Logistics",
+      "subfolder": "InventoryEntries",
+      "h0": "Mago",
+      "h1": "Logistics",
+      "h2": "Inventory Entries"
+    }
+  },
+  {
+    "match": ["refguide-m4-inventory-items-documents-items$", "refguide-m4-inventory-items$", "refguide-m4-items-documents*"],
+    "destination": {
+      "root": "Mago",
+      "folder": "Logistics",
+      "subfolder": "Items",
+      "h0": "Mago",
+      "h1": "Logistics",
+      "h2": "Items"
+    }
+  },
+  {
+    "match":["refguide-m4-inventory-itemsquantityvaluation$"],
+    "destination": {
+      "root": "Mago",
+      "folder": "Logistics",
+      "subfolder": "ItemsQuantity___Valuation",
+      "h0": "Mago4",
+      "h1": "Logistics",
+      "h2": "Items Quantity / Valuation"
+    }
+  },
+  {
+    "match":["refguide-m4-inventory$"],
+    "destination": {
+      "root": "Mago",
+      "folder": "Logistics",
+      "h0": "Mago",
+      "h1": "Logistics"
+    }
+  },
+  {
+    "match": ["refguide-m4-billofmaterials-common*", "refguide-m4-manufacturing-common*"],
+    "destination": {
+      "root": "Mago",
+      "folder": "Manufacturing",
+      "subfolder": "_Common"
+    }
+  },
+  {
+    "match":["refguide-m4-manufacturing-billofmaterials$"],
+    "destination": {
+      "root": "Mago",
+      "folder": "Manufacturing",
+      "subfolder": "Billof_Materials",
+      "h0": "Mago4",
+      "h1": "Manufacturing",
+      "h2": "Bill of Materials"
+    }
+  },
+  {
+    "match":["refguide-m4-manufacturing-configurator$"],
+    "destination": {
+      "root": "Mago",
+      "folder": "Manufacturing",
+      "subfolder": "Configurator",
+      "h0": "Mago4",
+      "h1": "Manufacturing",
+      "h2": "Configurator"
+    }
+  },
+  {
+    "match":["refguide-m4-manufacturing-documents*", "refguide-m4-manufacturing-manufacturing$", "refguide-m4-manufacturingplus*", "refguide-m4-manufacturing$"],
+    "destination": {
+      "root": "Mago",
+      "folder": "Manufacturing",
+      "subfolder": "Manufacturing",
+      "h0": "Mago4",
+      "h1": "Manufacturing",
+      "h2": "Manufacturing"
+    }
+  },
+  {
+    "match":["refguide-m4-manufacturing-manufacturingmobile*", "refguide-m4-manufacturingmobile*"],
+    "destination": {
+      "root": "Mago",
+      "folder": "Manufacturing",
+      "subfolder": "ManufacturingMobile",
+      "h0": "Mago4",
+      "h1": "Manufacturing",
+      "h2": "Manufacturing Mobile"
+    }
+  },
+  {
+    "match":["refguide-m4-manufacturing-crp$"],
+    "destination": {
+      "root": "Mago",
+      "folder": "Manufacturing",
+      "subfolder": "CRP",
+      "h0": "Mago4",
+      "h1": "Manufacturing",
+      "h2": "CRP"
+    }
+  },
+  {
+    "match":["refguide-m4-manufacturing-mrp$", "refguide-m4-mrp-documents*"],
+    "destination": {
+      "root": "Mago",
+      "folder": "Manufacturing",
+      "subfolder": "MRP",
+      "h0": "Mago4",
+      "h1": "Manufacturing",
+      "h2": "MRP"
+    }
+  },
+  {
+    "match":["refguide-m4-manufacturing-openmes$"],
+    "destination": {
+      "root": "Mago",
+      "folder": "Manufacturing",
+      "subfolder": "OpenMES",
+      "h0": "Mago4",
+      "h1": "Manufacturing",
+      "h2": "OpenMES"
+    }
+  },
+  {
+    "match":["refguide-m4-manufacturing-services-migrator40$"],
+    "redirect":"ERP.BillOfMaterials.Services.OrderedProdCalculation"
+  },
+  {
+    "match":["refguide-m4-manufacturing-subcontracting$"],
+    "destination": {
+      "root": "Mago",
+      "folder": "Manufacturing",
+      "subfolder": "Subcontracting",
+      "h0": "Mago4",
+      "h1": "Manufacturing",
+      "h2": "Subcontracting"
+    }
+  },
+  {
+    "match":["refguide-m4-manufacturing-tools$"],
+    "destination": {
+      "root": "Mago",
+      "folder": "Manufacturing",
+      "subfolder": "Tools",
+      "h0": "Mago4",
+      "h1": "Manufacturing",
+      "h2": "Tools"
+    }
+  },
+  {
+    "match":["refguide-m4-manufacturing-variants$"],
+    "destination": {
+      "root": "Mago",
+      "folder": "Manufacturing",
+      "subfolder": "Variants",
+      "h0": "Mago4",
+      "h1": "Manufacturing",
+      "h2": "Variants"
+    }
+  },
+  {
+    "match": ["refguide-extensions-api-platformapi$"],
+    "destination": {
+      "root": "TB_Studio",
+      "folder": "MagoAPI"
+    }
+  },
+  {
+    "match":  [
+                "refguide-extensions-firststartup$", "refguide-extensions-magotcpos-functionalities$", "refguide-extensions-magotilby-functionalities$",
+                "refguide-extensions-troubleshooting$", "refguide-extensions-troubleshootingtilby$", "refguide-m4-generalconceptepos$", "refguide-m4-guide*",
+                "refguide-m4-generalconcept*", "refguide-m4-installationguide*"
+              ],
+    "destination": {
+      "root": "Mago",
+      "folder": "Retail"
+    }
+  },
+  {
+    "match": ["refguide-extensions-magoapi-common-*"],
+    "destination": {
+      "root": "TB_Studio",
+      "folder": "MagoAPI",
+      "subfolder": "_Common"
+    }
+  },
+  {
+    "match": ["refguide-extensions-magoapi*"],
+    "destination": {
+      "root": "TB_Studio",
+      "folder": "MagoAPI",
+      "h0": "TaskBuilder Studio",
+      "h1": "MagoAPI"
+    }
+  },
+  {
+    "match": ["refguide-extensions-mymagostudio$"],
+    "destination": {
+      "root": "TB_Studio",
+      "folder": "MyMagoStudio",
+      "h0": "TaskBuilder Studio",
+      "h1": "MyMagoStudio"
+    }
+  },
+  {
+    "match": ["refguide-extensions-sos*"],
+    "destination": {
+      "root": "TB_Framework",
+      "folder": "DMS",
+      "subfolder": "SOSConnector",
+      "h0": "TaskBuilder Framework",
+      "h1": "DMS",
+      "h2": "SOSConnector"
+    }
+  },
+  {
+    "match": ["refguide-extensions-tbmagicplatform*"],
+    "destination": {
+      "root": "TB_Studio",
+      "folder": "MagicLink",
+      "h0": "TaskBuilder Studio",
+      "h1": "MagicLink"
+    }
+  },
+  {
+    "match": ["refguide-framework-tbwoormengine*"],
+    "destination": {
+      "root": "TB_Studio",
+      "folder": "ReportingStudio",
+      "subfolder": "ReportingStudio",
+      "h0": "TaskBuilder Studio",
+      "h1": "Reporting Studio"
+    }
+  },
+  {
+    "match": ["refguide-m4-billofmaterials-documents-bomcomponentsvaliditydate$"],
+    "redirect": "ERP.BillOfMaterials.Services.BOMComponentsValidityDate"
+  },
+  {
+    "match": ["refguide-m4-billofmaterials-documents-searchproductionplan$"],
+    "destination": {
+      "root": "Mago",
+      "folder": "Manufacturing",
+      "subfolder": "Manufacturing",
+      "h0": "Mago",
+      "h1": "Manufacturing",
+      "h2": "Manufacturing",
+      "h3": "Manufacturing Planning"
+    }
+  },
+  {
+    "match": ["refguide-m4-billofmaterials$"],
+    "redirect": "ERP.BillOfMaterials.Services.RecalculateReservedOrdered"
+  },
+  {
+    "match": ["refguide-m4-billofmaterialsplus-documents-bomwitheco$"],
+    "redirect": "ERP.BillOfMaterialsPlus.Documents.ECO"
+  },
+  {
+    "match": ["refguide-m4-cash$"],
+    "destination": {
+      "root": "Mago",
+      "folder": "Financial",
+      "subfolder": "Cash",
+      "h0": "Mago",
+      "h1": "Financial",
+      "h2": "Cash"
+    }
+  },
+  {
+    "match": ["refguide-m4-common-rabbitmqtcpos$", "refguide-m4-foodrecipe-common$"],
+    "destination": {
+      "root": "Mago",
+      "folder": "Retail",
+      "subfolder": "_Common"
+    }
+  },
+  {
+    "match":  [
+                "refguide-m4-common-zgdpr$", "refguide-m4-company-common-worker$", "refguide-m4-creditlimit-common*", 
+                "refguide-m4-customerssuppliers-common*", "refguide-m4-masterdata-common*", "refguide-m4-masterdata$"
+              ],
+    "destination": {
+      "root": "Mago",
+      "folder": "Masters",
+      "subfolder": "_Common"
+    }
+  },
+  { 
+    "match":["refguide-m4-configurator-documents-questionload$"],
+    "destination": {
+      "root": "Mago",
+      "folder": "Manufacturing",
+      "subfolder": "Configurator",
+      "h0": "Mago",
+      "h1": "Manufacturing",
+      "h2": "Configurator",
+      "h3": "Configurator"
+    }
+  },
+  {
+    "match":  [
+                "refguide-m4-core-documents-documentnavigation$", "refguide-m4-core-services-modifymagonetreports$", 
+                "refguide-m4-core-services-reportofmagonettomago4$", "refguide-m4-erp-installationguide*", "refguide-m4-erp-installingguide$",
+                "refguide-m4-erp-prerequisites$", "refguide-m4-erp-troubleshooting-requirements*"
+              ],
+    "destination": {
+      "root": "Mago",
+      "h0": "Mago",
+      "h1": "Common Functions"
+    }
+  },
+  {
+    "match":["refguide-m4-costaccounting$"],
+    "destination": {
+      "root": "Mago",
+      "folder": "Financial",
+      "subfolder": "Analysis__Controlling",
+      "h0": "Mago",
+      "h1": "Financial",
+      "h2": "Analysis & Controlling"
+    }
+  },
+  {
+    "match": ["refguide-m4-edi-export$"],
+      "destination": {
+      "root": "Mago",
+      "folder": "EDI",
+      "subfolder": "Export",
+      "h0": "Mago",
+      "h1": "EDI",
+      "h2": "Export"
+    }
+  },
+  {
+    "match":["refguide-m4-edi-tables$"],
+    "redirect": "ERP.EDI.BatchDocuments.EDITranscoding"
+  },
+  {
+    "match":["refguide-m4-edi-viewdetailsbutton$"],
+    "redirect": "ERP.EDI.BatchDocuments.EDIGenerateBoL"
+  },
+  {
+    "match": ["refguide-m4-edi$"],
+      "destination": {
+      "root": "Mago",
+      "folder": "EDI",
+      "h0": "Mago",
+      "h1": "EDI"
+    }
+  },
+  {
+    "match":["refguide-m4-financial$", "refguide-m4-financialtables$"],
+    "destination": {
+      "root": "Mago",
+      "folder": "Financial",
+      "h0": "Mago",
+      "h1": "Financial"
+    }
+  },
+  {
+    "match":["refguide-m4-fiscalprintouts$"],
+    "destination": {
+      "root": "Mago",
+      "folder": "Financial",
+      "subfolder": "FiscalPrintouts",
+      "h0": "Mago",
+      "h1": "Financial",
+      "h2": "Fiscal Printouts"
+    }
+  },
+  {
+    "match":["refguide-m4-intraeu$"],
+    "destination": {
+      "root": "Mago",
+      "folder": "Financial",
+      "subfolder": "IntraEU",
+      "h0": "Mago",
+      "h1": "Financial",
+      "h2": "Intra-EU"
+    }
+  },
+  {
+    "match":["refguide-m4-fixedassets*"],
+    "destination": {
+      "root": "Mago",
+      "folder": "Financial",
+      "subfolder": "FixedAssets",
+      "h0": "Mago",
+      "h1": "Financial",
+      "h2": "Fixed Assets"
+    }
+  },
+  {
+    "match":["RefGuide-M4-ForecastAccounting$"],
+    "destination": {
+      "root": "Mago",
+      "folder": "Financial",
+      "subfolder": "ForecastAccounting",
+      "h0": "Mago",
+      "h1": "Financial",
+      "h2": "Forecast Accounting"
+    }
+  },
+  {
+    "match":["refguide-m4-inventory-qualityinspection$"],
+    "redirect": "ERP.QualityInspection.Documents.InspectionOrder"
+  },
+  {
+    "match":["refguide-m4-inventory-services-itemswaptransactiondeleting$"],
+    "redirect": "ERP.Inventory.Services.ItemsWAPTransactionsDeleting"
+  },
+  {
+    "match": ["refguide-m4-inventory-tables$"],
+    "destination": {
+      "root": "Mago",
+      "folder": "Logistics",
+      "subfolder": "Tables",
+      "h0": "Mago",
+      "h1": "Logistics",
+      "h2": "Tables"
+    }
+  },
+  {
+    "match":["refguide-m4-inventory-wms$", "refguide-m4-logistics-wmsapp-faqwms$"],
+    "destination": {
+      "root": "Mago",
+      "folder": "Logistics",
+      "subfolder": "WMS",
+      "h0": "Mago4",
+      "h1": "Logistics",
+      "h2": "WMS"
+    }
+  }
+   
+]

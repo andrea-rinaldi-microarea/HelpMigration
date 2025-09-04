@@ -1,0 +1,4 @@
+﻿outputdir=output/MagoCloud
+mainprj=true
+includetags=MagoCloud
+project=MagoCloud.sam 

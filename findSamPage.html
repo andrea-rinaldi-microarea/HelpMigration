@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MAGOCLOUD - SEARCH HELP PAGE</title>
+    <style>
+        body {
+            background-image: url('images/background.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            width: 600px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 5px;
+            color: #555;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+
+        .radio-group {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 15px;
+        }
+
+        .radio-group label {
+            margin-right: 10px;
+            font-size: 16px;
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        #responseBox {
+            margin-top: 20px;
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+            font-family: monospace;
+            white-space: pre-wrap;
+            text-align: left;
+        }
+
+        #toast {
+            display: none;
+            margin-top: 10px;
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            text-align: center;
+            opacity: 1;
+            transition: opacity 1s ease-out; 
+        }
+
+        .input-wrapper {
+            position: relative;
+            display: inline-block;
+            width: 100%;
+        }
+
+        #namespace {
+            padding-right: 30px;
+        }
+
+        .clear-button {
+            position: absolute;
+            right: 10px;
+            top: 15%;
+            cursor: pointer;
+            color: rgb(252, 89, 89);
+            font-size: 16px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div style="display: flex;align-items: center; justify-content: center;">
+            <h1>MAGOCLOUD</h1>
+            <img src="images/magocloudLogo.png" alt="MagoCloud_logo" width="30" height="30" style="margin-left: 10px; border-radius: 10%; border: 3px solid #000000;">
+        </div>
+        <h3>SEARCH HELP PAGE</h3>    
+        <div class="input-wrapper">
+            <input type="text" id="namespace" placeholder="Enter namespace...">
+            <span class="clear-button" onclick="clearNamespace()">&#10006;</span>
+        </div>
+        <h4 style="margin-top: 15px;">SELECT MAGO LANGUAGE</h4> 
+        <div class="radio-group">
+            <input type="radio" id="en" name="language" value="en" checked>
+            <label for="en">English</label>
+            <img src="images/en_flag.png" alt="English Flag" class="flag-img" width="20" height="10" style="margin-top: 5px;">
+            <input type="radio" id="it" name="language" value="it" style="margin-left: 20px;">
+            <label for="it">Italiano</label>
+            <img src="images/it_flag.png" alt="Italian Flag" class="flag-img" width="20" height="10" style="margin-top: 5px;">
+        </div>
+        <button id="requestButton" onclick="getHtmlLink()" style="margin-top: 20px;font-weight: bold;">FIND PAGE</button>
+        <div id="responseBox"></div>
+        <button id="copyButton" onclick="copyToClipboard()" style="margin-top: 10px; display: none;font-weight: bold;">Copy to Clipboard</button>
+        <div id="toast">Text copied to clipboard</div>
+    </div>
+    <script>
+
+        document.addEventListener('DOMContentLoaded', () => 
+        {
+            const requestButton  = document.getElementById('requestButton');
+            const namespaceInput = document.getElementById('namespace');
+            const copyButton     = document.getElementById('copyButton');
+        });
+
+        function clearNamespace() 
+        {
+            document.getElementById('namespace').value = '';
+        }
+
+        function copyToClipboard() 
+        {
+            const responseBox = document.getElementById('responseBox');
+            const textToCopy  = responseBox.textContent;
+            const toast       = document.getElementById('toast');
+
+            navigator.clipboard.writeText(textToCopy).then(() => 
+                                                     {
+                                                        showToast('Text copied to clipboard', '#4CAF50');
+                                                     })
+                                                     .catch(error => 
+                                                     {
+                                                         console.error('Failed to copy text: ', error);
+                                                     });
+        }
+
+        function showToast(message, color) 
+        {
+            const toast                 = document.getElementById('toast');
+            toast.textContent           = message;
+            toast.style.backgroundColor = color;
+            toast.style.display         = 'block';
+            toast.style.opacity         = '1'; 
+
+            setTimeout(() => {
+                toast.style.opacity = '0'; 
+            }, 2000); 
+
+            setTimeout(() => {
+                toast.style.display = 'none';
+            }, 3000); 
+        }
+
+        function getHtmlLink() 
+        {
+            const namespace   = document.getElementById('namespace').value;
+            const language    = document.querySelector('input[name="language"]:checked').value;
+            const responseBox = document.getElementById('responseBox');
+
+            if(namespace) 
+            {
+                const apiUrl = `http://localhost:3000/getHelp?namespace=${namespace}&language=${language}`;
+                
+                fetch(apiUrl, 
+                { 
+                    method: 'GET'
+                })
+                .then(response => 
+                {
+                    if(!response.ok) 
+                        throw new Error('Network response was not ok');
+
+                    return response.json(); 
+                })
+                .then(data => 
+                {
+                    if (data.url) 
+                    {
+                        //window.open(data.url, '_blank'); //NOT POSSIBLE OPEN AUTOMATICALLY LOCAL FILE ON BROWSERS
+                        responseBox.textContent = data.url;
+                        copyButton.style.display = 'inline-block'; 
+                        copyToClipboard()
+                    } 
+                    else 
+                    {
+                        responseBox.textContent = 'No URL returned from the server.';
+                        copyButton.style.display = 'none'; 
+                    }
+                })
+                .catch(error => 
+                {
+                    responseBox.textContent = 'An error occurred while fetching the file URL.';
+                    console.error('Error:', error);
+                    copyButton.style.display = 'none'; 
+                });
+            } 
+            else 
+            {
+                showToast('Please enter a namespace!', '#fc5959');
+                responseBox.textContent = "";
+            }
+        }
+    </script>
+</body>
+</html>

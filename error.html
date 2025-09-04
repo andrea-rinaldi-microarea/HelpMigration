@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SEARCH HELP PAGE</title>
+    <style>
+        body {
+            background-image: url('./background.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            width: 600px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 5px;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div style="display: flex;align-items: center; justify-content: center;">
+            <h1>MAGOCLOUD</h1>
+            <img src="./magocloudLogo.png" alt="MagoCloud_logo" width="30" height="30" style="margin-left: 10px; border-radius: 10%; border: 3px solid #000000;">
+        </div>
+        <h3>ERROR</h3>    
+        <p id="errorMessage"></p>
+    </div>
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const errorType = urlParams.get('error');
+
+        let errorMessage = '';
+
+        switch (errorType) {
+            case 'server'         : errorMessage = 'Oh no! A server error occured during your request! ';
+                                    bresak;
+            case 'namespace'      : errorMessage = 'Namespace query parameter is required.';
+                                    break;
+            case 'language'       : errorMessage = 'Language query parameter is required.';
+                                    break;
+            case 'invalidLanguage': errorMessage = 'Language query parameter must be "en" or "it".';
+                                    break;
+            default:
+                errorMessage = 'An unknown error occurred.';
+        }
+
+        document.getElementById('errorMessage').textContent = errorMessage;
+    </script>
+</body>
+</html>
