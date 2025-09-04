@@ -6,8 +6,8 @@ var config =
 {
   user: 'sa',
   password: 'Microarea.',
-  server: 'MARTOM2-NB',
-  database: 'help_test',
+  server: 'RINAND-NB',
+  database: 'MicroareaWiki',
   trustServerCertificate: true
 };
 
