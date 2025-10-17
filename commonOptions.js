@@ -1,6 +1,7 @@
 const commandLineArgs = require('command-line-args');
 const optionDefinitions = [
-                              { name: 'root', type: String, defaultValue: "C:/HelpCenter" },
+                              { name: 'root', type: String, defaultValue: "" },
+                              { name: 'language', type: String, defaultValue: "en" },
                               { name: 'businessObjectsSourceFolder', type: String, defaultValue: "C:/helpgensource" },
                               { name: 'superSamFolder', type: String, defaultValue: "C:/Program Files/Zucchetti Supersam/supersam.exe" },
                               { name: 'folder', type: String, defaultValue: "C:/MagoDevelop/Standard/Applications/ERP" },

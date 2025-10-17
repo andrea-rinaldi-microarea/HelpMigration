@@ -14,7 +14,7 @@
             ],
             "cwd": "${fileDirname}",
             "program": "${file}",
-            "args": ["--root", "${workspaceFolder}", "--businessObjectsSourceFolder", "C:\\helpgensource"]
+            "args": ["--root", "C:\\working\\HelpCenter"]
         },
         {
             "type": "node",
