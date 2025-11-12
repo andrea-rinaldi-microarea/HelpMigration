@@ -52,14 +52,40 @@ function fsCleanup(str)
     }
 }
 
+var adjustedNS = require("./adjustedNS.json");
+
+function adjustProductFolder(folder)
+{
+    if (folder.toLowerCase() == "m4")   return "ERP";
+    if (folder.toLowerCase() == "erp")  return "ERP";
+
+    return folder;
+}
+
+function adjustModuleFolder(folder)
+{
+    return folder;
+}
+
+function adjustNS(pageName)
+{
+    for(let n = 0; n < adjustedNS.length; n++) 
+    {
+        if (pageName.match(new RegExp(`${adjustedNS[n].match}`,"i"))) 
+            return pageName.replace(new RegExp(`${adjustedNS[n].replace.original}`,"i"), adjustedNS[n].replace.adjusted);
+    }
+
+    return pageName;
+}
+
 function getModuleFolder(pageName)
 {
     var ns = pageName.split('-');
 
     if (ns.length > 2)
-        return path.join(fsCleanup(ns[1]), fsCleanup(ns[2]));
+        return path.join(fsCleanup(adjustProductFolder(ns[1])), fsCleanup(adjustModuleFolder(ns[2])));
     else if (ns.length > 1)
-        return fsCleanup(ns[1]);
+        return fsCleanup(adjustProductFolder(ns[1]));
     else
         return "";
 }
@@ -113,8 +139,6 @@ async function convertPages()
 
             var helpPage = result.recordset[i];
 
-            helpPage.Page = helpPage.Page.replace(`(${options.language})`,'').replaceAll(' ',''); 
-
             if (!bawl.isWhitelisted(helpPage.Page))
                 continue;
             else
@@ -136,6 +160,10 @@ async function convertPages()
                 logPage(emptyLogFileName, helpPage.Page);
                 continue;
             }
+
+            helpPage.Page = helpPage.Page.replace(`(${options.language})`,'').replaceAll(' ',''); 
+
+            helpPage.Page = adjustNS(helpPage.Page);
 
             var destinationFolder = path.join(outputFolder, getModuleFolder(helpPage.Page));
             var filename = fsCleanup(helpPage.Page) + ".sam";

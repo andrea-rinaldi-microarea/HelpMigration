@@ -1,0 +1,31 @@
+[
+    {
+        "match": "CRM-Base-Customization",
+        "replace": {
+            "original": "CRM-Base-Customization",
+            "adjusted": "RefGuide-MSH-Providers-CRM_Base_Customization"
+        }
+    },
+    {
+        "match": "DB-Customisation",
+        "replace": {
+            "original": "DB-Customisation",
+            "adjusted": "RefGuide-MSH-Providers-DB_Customisation"
+        }
+    },
+    {
+        "match": "RefGuide-Common-wmsmobile*",
+        "replace": {
+            "original": "RefGuide-Common-wmsmobile",
+            "adjusted": "RefGuide-WMS-WMSMobile-Common"
+        }
+    },
+    {
+        "match": "Ref-Guide-M4-Sales-Common-CrossReferences",
+        "replace": {
+            "original": "Ref-Guide-M4-Sales-Common-CrossReferences",
+            "adjusted": "RefGuide-M4-Sales-Common-CrossReferences"
+        }
+    }
+
+]
