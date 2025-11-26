@@ -4,12 +4,16 @@ const sql               = require('mssql')
 const options           = require("./commonOptions");
 const bawl              = require("./BnWList/BnWList");
 const chalk             = require ('chalk');
+const convert           = require("./convertPage");   
 
 const workingFolder             = path.join(__dirname, "working");
 const emptyLogFileName          = "empty_pages.txt"
 const whitelistedLogFileName    = "whitelisted_pages.txt"
 const blacklistedLogFileName    = "blacklisted_pages.txt"
 const processedLogFileName      = "processed_pages.txt"
+const extractedLogFileName      = "extracted_pages.txt"
+const discardedLogFileName      = "discarded_pages.txt"
+const statisticsLogFileName     = "statistics.txt"
 
 if (options.root == "") 
 {
@@ -21,11 +25,12 @@ const outputFolder  = path.join(options.root, options.language)
 
 var statistics = 
 {
-    extracted         : 0,
-    whitelisted       : 0,
-    blacklisted       : 0,
-    empty             : 0,
-    processed         : 0
+    extracted   : 0,
+    whitelisted : 0,
+    blacklisted : 0,
+    empty       : 0,
+    discarded   : 0,
+    processed   : 0
 }
 
 var config = 
@@ -103,12 +108,6 @@ function cleanLog(logFileName)
        fs.unlinkSync(path.join(workingFolder, logFileName));
 }
 
-function convertPage(helpPage)
-{
-    return  '[STYLE ../../../mago-styles/mago-help-custom.css]\n\n' +
-            helpPage.Content;
-}
-
 async function convertPages() 
 {
     console.log(chalk.hidden(''))
@@ -126,6 +125,7 @@ async function convertPages()
                          '[Title],' + 
                          '[Content] ' + 
                     'FROM [dbo].[PageContent] ' + 
+    // "WHERE [Page] = 'RefGuide-M4-CustomersSuppliers-Documents-Customers(it-IT)'" +
                ' ORDER BY Page';
     // "WHERE [Page] = 'Table-ERP-Accounting-Dbl-MA_AccTemplatesTaxDetail'" +
       return request.query(query);
@@ -135,12 +135,17 @@ async function convertPages()
         console.log(`scanning ${result.recordset.length} pages ...`)
         for(let i = 0; i < result.recordset.length; i ++) 
         {
-            statistics.extracted++;
-
             var helpPage = result.recordset[i];
 
+            logPage(extractedLogFileName, helpPage.Page);
+            statistics.extracted++;
+
             if (!bawl.isWhitelisted(helpPage.Page))
+            {
+                logPage(discardedLogFileName, helpPage.Page);
+                statistics.discarded++;
                 continue;
+            }
             else
             {
                 logPage(whitelistedLogFileName, helpPage.Page);
@@ -151,32 +156,36 @@ async function convertPages()
             {
                 logPage(blacklistedLogFileName, helpPage.Page);
                 statistics.blacklisted++;
+                logPage(discardedLogFileName, helpPage.Page);
+                statistics.discarded++;
                 continue;
             }
 
             if(helpPage.Content.trim() == '')
             {
-                statistics.empty++
                 logPage(emptyLogFileName, helpPage.Page);
+                statistics.empty++
+                logPage(discardedLogFileName, helpPage.Page);
+                statistics.discarded++;
                 continue;
             }
 
-            helpPage.Page = helpPage.Page.replace(`(${options.language})`,'').replaceAll(' ',''); 
+            helpPageName = helpPage.Page.replace(`(${options.language})`,'').replaceAll(' ',''); 
 
-            helpPage.Page = adjustNS(helpPage.Page);
+            // helpPageName = adjustNS(helpPageName);
 
-            var destinationFolder = path.join(outputFolder, getModuleFolder(helpPage.Page));
-            var filename = fsCleanup(helpPage.Page) + ".sam";
+            var destinationFolder = path.join(outputFolder, getModuleFolder(helpPageName));
+            var filename = fsCleanup(helpPageName) + ".sam";
 
             try 
             {
                 fs.mkdirSync(destinationFolder,{recursive: true});
-                var content = convertPage(helpPage);
+                var content = convert.convertPage(helpPage);
                 fs.writeFileSync(path.join(destinationFolder, filename), content, ()=>{});
             } 
             catch (err) 
             {
-                console.error(`Error exporting help page ${helpPage.Page}:`, err);
+                console.error(`Error exporting help page ${helpPageName}:`, err);
             }
 
             statistics.processed++;
@@ -189,10 +198,12 @@ async function convertPages()
     })
     .finally( () =>
     {
+        var statistics_txt = JSON.stringify(statistics,{},2);
+        logPage(statisticsLogFileName, statistics_txt);
         console.log(chalk.hex('#FF7F00').bold('Disconnecting from database...'))
         console.log(chalk.hex('#FFBF00').bold('...PHASE 1 COMPLETED!'))
         console.log(chalk.hidden(''))
-        console.log(JSON.stringify(statistics,{},2))
+        console.log(statistics_txt)
         console.log('Finalizing ...');
     });
 }
@@ -219,6 +230,9 @@ async function getAndConvertAssets()
     cleanLog(whitelistedLogFileName);
     cleanLog(blacklistedLogFileName);
     cleanLog(processedLogFileName);
+    cleanLog(extractedLogFileName);
+    cleanLog(discardedLogFileName);
+    cleanLog(statisticsLogFileName);
 
     await convertPages(); 
 }

@@ -14,7 +14,7 @@
             ],
             "cwd": "${fileDirname}",
             "program": "${file}",
-            "args": ["--root", "C:\\working\\HelpCenter"]
+            "args": ["--root", "C:\\working\\HelpCenter", "--language", "it-IT"]
         },
         {
             "type": "node",
