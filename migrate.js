@@ -14,6 +14,7 @@ const processedLogFileName      = "processed_pages.txt"
 const extractedLogFileName      = "extracted_pages.txt"
 const discardedLogFileName      = "discarded_pages.txt"
 const statisticsLogFileName     = "statistics.txt"
+const imagesFileName            = "images.json"
 
 if (options.root == "") 
 {
@@ -41,6 +42,8 @@ var config =
   database: 'MicroareaWiki',
   trustServerCertificate: true
 };
+
+var images = [];
 
 if(options.dbconfig != null) 
 {
@@ -180,7 +183,12 @@ async function convertPages()
             try 
             {
                 fs.mkdirSync(destinationFolder,{recursive: true});
-                var content = convert.convertPage(helpPage);
+                var content = convert.convertPage(helpPage, (imagePath) => {
+                    if (!images.includes(imagePath)) {
+                        images.push(imagePath)
+                        // logPage(imagesFileName, imagePath);
+                    }
+                });
                 fs.writeFileSync(path.join(destinationFolder, filename), content, ()=>{});
             } 
             catch (err) 
@@ -200,6 +208,8 @@ async function convertPages()
     {
         var statistics_txt = JSON.stringify(statistics,{},2);
         logPage(statisticsLogFileName, statistics_txt);
+        var images_json = JSON.stringify(images,{},2);
+        logPage(imagesFileName, images_json);
         console.log(chalk.hex('#FF7F00').bold('Disconnecting from database...'))
         console.log(chalk.hex('#FFBF00').bold('...PHASE 1 COMPLETED!'))
         console.log(chalk.hidden(''))
@@ -233,6 +243,7 @@ async function getAndConvertAssets()
     cleanLog(extractedLogFileName);
     cleanLog(discardedLogFileName);
     cleanLog(statisticsLogFileName);
+    cleanLog(imagesFileName);
 
     await convertPages(); 
 }

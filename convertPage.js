@@ -1,5 +1,5 @@
 const options = require("./commonOptions");
-const MAIN_IMAGES_FOLDER        = '__MAIN_IMAGES'
+// const MAIN_IMAGES_FOLDER        = '__MAIN_IMAGES'
 
 function createTocStructure(text) 
 {
@@ -23,7 +23,7 @@ function replaceAllCaseInsensitive(str, search, replacement)
    return str.replace(regex, replacement);
 }
 
-function convertPage(helpPage)
+function convertPage(helpPage, imagesTracker)
 {
      var tocData = []
 
@@ -33,14 +33,18 @@ function convertPage(helpPage)
         tocData = createTocStructure(source);
 
      source = source.replaceAll('\r\n','\n')
-     source = source.replace(/%2f/gi,"/").replace(/\{UP\}/gi,"").replace(/\[image\|(.*?)\|(.*?)\]/g, function (match, p1, p2) 
+     source = source.replace(/%2f/gi,"/").replace(/\{UP\}\//gi,"").replace(/\{UP\}/gi,"")
+     source = source.replace(/\[image\|(.*?)\|(.*?)\]/g, (match, p1, p2) =>
      {
-         var imagePath = p2;
-         var splittedPath = imagePath.split('/')
-         if(splittedPath.length == 2 && splittedPath[0] == '' && splittedPath[1].includes('.'))
-             return '[IMG ' + MAIN_IMAGES_FOLDER + '/' + splittedPath[1].replaceAll('|','') + ']'
+         var imagePath = p2.replaceAll('|','');
+        //  var splittedPath = imagePath.split('/')
+        //  if(splittedPath.length == 2 && splittedPath[0] == '' && splittedPath[1].includes('.'))
+        //      return '[IMG ' + MAIN_IMAGES_FOLDER + '/' + splittedPath[1].replaceAll('|','') + ']'
  
-         return `[IMG ${imagePath.replaceAll('|','')}]`;                
+        if (imagesTracker !== undefined)
+            imagesTracker(imagePath);
+
+         return `[IMG ${imagePath}]`;                
      })
 
      source = replaceAllCaseInsensitive(source,'<[ ]*li[ ]*>','<li>');
